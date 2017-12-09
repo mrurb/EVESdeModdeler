@@ -16,9 +16,9 @@ namespace EpsynServices.Models.EVEModels
         public virtual DbSet<Chrfactions> Chrfactions { get; set; }
         public virtual DbSet<Chrraces> Chrraces { get; set; }
         public virtual DbSet<Crpactivities> Crpactivities { get; set; }
-        public virtual DbSet<Crpnpccorporationdivisions> Crpnpccorporationdivisions { get; set; }
+        public virtual DbSet<NPCCorpDivision> Crpnpccorporationdivisions { get; set; }
         public virtual DbSet<Crpnpccorporationresearchfields> Crpnpccorporationresearchfields { get; set; }
-        public virtual DbSet<Crpnpccorporations> Crpnpccorporations { get; set; }
+        public virtual DbSet<NPCCorporation> Crpnpccorporations { get; set; }
         public virtual DbSet<Crpnpccorporationtrades> Crpnpccorporationtrades { get; set; }
         public virtual DbSet<NPCCorpDivision> Crpnpcdivisions { get; set; }
         public virtual DbSet<Dgmattributecategories> Dgmattributecategories { get; set; }
@@ -460,7 +460,7 @@ namespace EpsynServices.Models.EVEModels
                     .HasMaxLength(1000);
             });
 
-            modelBuilder.Entity<Crpnpccorporationdivisions>(entity =>
+            modelBuilder.Entity<NPCCorpDivision>(entity =>
             {
                 entity.HasKey(e => new { e.CorporationId, e.DivisionId });
 
@@ -494,7 +494,7 @@ namespace EpsynServices.Models.EVEModels
                     .HasColumnType("int(11)");
             });
 
-            modelBuilder.Entity<Crpnpccorporations>(entity =>
+            modelBuilder.Entity<NPCCorporation>(entity =>
             {
                 entity.HasKey(e => e.CorporationId);
 

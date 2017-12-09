@@ -1,12 +1,19 @@
-﻿using System;
+﻿using EVESdeModdeler;
+using System;
 using System.Collections.Generic;
 
 namespace EpsynServices.Models.EVEModels
 {
-    public partial class Crpnpccorporations
+    [EVETable("crpNPCCorporations")]
+    public partial class NPCCorporation
     {
+        [EVEProperty("corporationID")]
         public int CorporationId { get; set; }
+
+        [EVEProperty("size")]
         public string Size { get; set; }
+
+        [EVEProperty("extent")]
         public string Extent { get; set; }
         public int? SolarSystemId { get; set; }
         public int? InvestorId1 { get; set; }

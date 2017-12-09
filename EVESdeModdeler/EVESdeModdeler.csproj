@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Compile Include="Models\Agent.cs" />
+    <Compile Include="Models\NPCCorporationDivision.cs" />
+    <Compile Include="Models\NPCDivision.cs" />
   </ItemGroup>
 
   <ItemGroup>
