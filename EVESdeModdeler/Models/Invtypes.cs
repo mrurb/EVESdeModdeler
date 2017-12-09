@@ -6,8 +6,8 @@ namespace EpsynServices.Models.EVEModels
     public partial class Invtypes
     {
         public int TypeId { get; set; }
-        public int? GroupId { get; set; }
-        public string TypeName { get; set; }
+		public virtual Invgroups GroupId { get; set; }
+		public string TypeName { get; set; }
         public string Description { get; set; }
         public double? Mass { get; set; }
         public double? Volume { get; set; }
