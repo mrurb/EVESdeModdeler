@@ -1,13 +1,18 @@
-﻿using System;
+﻿using EVESdeModdeler;
+using System;
 using System.Collections.Generic;
 
 namespace EpsynServices.Models.EVEModels
 {
-    public partial class Agtagents
+    [EVETable("agtAgents")]
+    public partial class Agent
     {
+        [EVEProperty("agentID")]
         public int AgentId { get; set; }
-        public int? DivisionId { get; set; }
-        public int? CorporationId { get; set; }
+
+        [EVEProperty("divisionID")]
+        public virtual NPCCorpDivision Division { get; set; }
+        public int CorporationId { get; set; }
         public int? LocationId { get; set; }
         public int? Level { get; set; }
         public int? Quality { get; set; }

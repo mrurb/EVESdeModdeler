@@ -6,7 +6,7 @@ namespace EpsynServices.Models.EVEModels
 {
     public partial class EvESDEContext : DbContext
     {
-        public virtual DbSet<Agtagents> Agtagents { get; set; }
+        public virtual DbSet<Agent> Agtagents { get; set; }
         public virtual DbSet<Agtagenttypes> Agtagenttypes { get; set; }
         public virtual DbSet<Agtresearchagents> Agtresearchagents { get; set; }
         public virtual DbSet<Certcerts> Certcerts { get; set; }
@@ -20,7 +20,7 @@ namespace EpsynServices.Models.EVEModels
         public virtual DbSet<Crpnpccorporationresearchfields> Crpnpccorporationresearchfields { get; set; }
         public virtual DbSet<Crpnpccorporations> Crpnpccorporations { get; set; }
         public virtual DbSet<Crpnpccorporationtrades> Crpnpccorporationtrades { get; set; }
-        public virtual DbSet<Crpnpcdivisions> Crpnpcdivisions { get; set; }
+        public virtual DbSet<NPCCorpDivision> Crpnpcdivisions { get; set; }
         public virtual DbSet<Dgmattributecategories> Dgmattributecategories { get; set; }
         public virtual DbSet<Dgmattributetypes> Dgmattributetypes { get; set; }
         public virtual DbSet<Dgmeffects> Dgmeffects { get; set; }
@@ -98,7 +98,7 @@ namespace EpsynServices.Models.EVEModels
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Agtagents>(entity =>
+            modelBuilder.Entity<Agent>(entity =>
             {
                 entity.HasKey(e => e.AgentId);
 
@@ -625,7 +625,7 @@ namespace EpsynServices.Models.EVEModels
                     .HasColumnType("int(11)");
             });
 
-            modelBuilder.Entity<Crpnpcdivisions>(entity =>
+            modelBuilder.Entity<NPCCorpDivision>(entity =>
             {
                 entity.HasKey(e => e.DivisionId);
 

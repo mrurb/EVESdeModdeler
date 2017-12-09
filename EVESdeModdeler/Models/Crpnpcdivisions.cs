@@ -1,9 +1,11 @@
-﻿using System;
+﻿using EVESdeModdeler;
+using System;
 using System.Collections.Generic;
 
 namespace EpsynServices.Models.EVEModels
 {
-    public partial class Crpnpcdivisions
+    [EVETable("crpNPCDivisions")]
+    public partial class NPCCorpDivision
     {
         public int DivisionId { get; set; }
         public string DivisionName { get; set; }
