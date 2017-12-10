@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace SQLForeignKeys
 {
@@ -8,36 +9,31 @@ namespace SQLForeignKeys
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter a connectionString: ");
-            string connectionString = Console.ReadLine();
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            connection.Open();
-            var command = new MySqlCommand("SHOW TABLES", connection);
-            var reader = command.ExecuteReader();
-            var list = new List<String>();
-            while (reader.Read())
-            {
-                list.Add(reader.GetString(0));
-            }
-            reader.Close();
-            foreach(string table in list)
-            {
-                command = new MySqlCommand("DESCRIBE " + table, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
+            Console.Write("Enter the file name: ");
+            string FileName = Console.ReadLine();
+            var file = new StreamReader(FileName);
+            string line;
+            while ((line = file.ReadLine()) != null){
+                var split = line.Split("\t");
+                var key = new ForeignKey()
                 {
-                    var colName = reader.GetString(0);
-                    var keyType = reader.GetString(3);
-                    if(colName.Length > 2 && colName.Substring(colName.Length -2) == "ID" && keyType != "PRI")
-                    {
-                        Console.WriteLine("{0}.{1} Foreign Key Needed", table, colName);
-                    }
-                }
-                reader.Close();
-
+                    localTable = split[0].Split(".")[0],
+                    localColumn = split[0].Split(".")[1],
+                    foreignTable = split[1].Split(".")[0],
+                    foreignColumn = split[1].Split(".")[1]
+                };
+                Console.WriteLine("ALTER TABLE {0} ADD FOREIGN KEY ({1}) REFERENCES {2}({3});", key.localTable, key.localColumn, key.foreignTable, key.foreignColumn);
             }
-            Console.WriteLine("Finished");
             Console.ReadLine();
         }
+    }
+
+    class ForeignKey
+    {
+        public string localTable { get; set; }
+        public string localColumn { get; set; }
+        public string foreignTable { get; set; }
+        public string foreignColumn { get; set; }
+
     }
 }
